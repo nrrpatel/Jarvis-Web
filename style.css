@@ -1,0 +1,645 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* START OF THE CLOCK STYLING */
+/* Chat Area CSS Start */
+.chat-area header{
+  display: flex;
+  align-items: center;
+  padding: 18px 30px;
+}
+
+
+.chat-box{
+  width: 520px;
+  margin-top: 123px;
+  border-radius: 45px;
+  margin-left: 600px;
+  position: relative;
+  height: 405px;
+  overflow-y: auto;
+  padding: 10px 30px 20px 30px;
+  background: #f7f7f7;
+  box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
+              inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
+}
+.chat-box .text{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: calc(100% - 50px);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.chat-box .chat{
+  margin: 15px 0;
+}
+.chat-box p{
+  margin-right: 350px;
+  padding: 8px 16px;
+  box-shadow: 0 0 32px rgb(0 0 0 / 8%),
+              0rem 16px 16px -16px rgb(0 0 0 / 10%);
+}
+.chat-box .jmsg{
+  display: flex;
+}
+.chat-box .jmsg .details{
+  margin-left: auto;
+  max-width: calc(100% - 130px);
+}
+.jmsg .details p{
+  background: #333;
+  color: #fff;
+  border-radius: 18px 18px 0 18px;
+}
+.chat-box .usermsg{
+  display: flex;
+  align-items: flex-end;
+}
+.chat-box .usermsg img{
+  height: 35px;
+  width: 35px;
+}
+.chat-box .usermsg .details{
+  margin-right: auto;
+  margin-left: 10px;
+  max-width: calc(100% - 130px);
+}
+.usermsg .details p{
+  background: #fff;
+  color: #333;
+  border-radius: 18px 18px 18px 0;
+}
+
+.datetime{
+  color: #fff;
+  background: hsl(0, 0%, 9%);
+  font-family: "Segoe UI", sans-serif;
+  width: 465px;
+  padding: 30px 10px;
+  border: 3px solid hsl(0, 0%, 9%);
+  border-radius: 25px;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 255, 255, 0.09));
+  transition: 0.5s;
+  transition-property: background, box-shadow;
+  margin-left: 45px;
+}
+
+.datetime:hover{
+  background: #2E94E3;
+  box-shadow: 0 0 30px #2E94E3;
+}
+
+.date{
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.time{
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time span:not(:last-child){
+  position: relative;
+  margin: 0 6px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.time span:last-child{
+  background: #2E94E3;
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding: 0 5px;
+  border-radius: 3px;
+}
+    
+/* END OF THE CLOCK STYLING */
+
+
+
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --gradient-color-red: linear-gradient(90deg, 
+                          hsl(7, 89%, 46%) 15%,
+                          hsl(11, 93%, 68%) 100%);
+  --gradient-color-orange: linear-gradient(90deg, 
+                           hsl(22, 89%, 46%) 15%,
+                           hsl(54, 90%, 45%) 100%);
+  --gradient-color-yellow: linear-gradient(90deg, 
+                           hsl(54, 89%, 46%) 15%,
+                           hsl(92, 90%, 45%) 100%);
+  --gradient-color-green: linear-gradient(90deg, 
+                          hsl(92, 89%, 46%) 15%,
+                          hsl(92, 90%, 68%) 100%);
+  --text-color: #fff;
+  --body-color: hsl(0, 0%, 11%);
+  --container-color: hsl(0, 0%, 9%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Rubik', sans-serif;
+
+  --biggest-font-size: 2.5rem;
+  --normal-font-size: .938rem;
+  --smaller-font-size: .75rem;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 2.75rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+
+*,*::before,*::after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.initial{
+  height: 3vh;
+  width: 50vh;
+  display: flex;
+  margin-left: 645px;
+
+}
+
+input[type="radio"]{
+  -webkit-appearance: none;
+}
+.text{
+  font-size: 60px;
+  font-weight: 600;
+  margin-left: 3px;
+  color: #fff;
+  margin-left: 100px;
+}
+
+label{
+  height: 120px;
+  width: 160px;
+  border: 6px solid crimson;
+  margin: auto;
+  border-radius: 115px;
+  position: relative;
+  color: #18f98d;
+  transition: 0.5s;
+  margin-top: 50px;
+  align-items: center;
+  
+}
+.spotify{
+  position: absolute;
+  left:4%;
+  top: 20%;
+
+  
+} 
+/* .in_middle {
+  top: 50%;
+  left: 140%;
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10000;
+
+  width: 80vw;
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.in_middle::-webkit-scrollbar {
+  display: block;
+}
+
+.in_middle::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.in_middle::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+} */
+
+
+/* 
+.container{
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  margin-left: 550px;
+  font-family: 'Poppins',sans-serif;
+}
+.container .title{
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  font-family: 'Poppins',sans-serif;
+}
+.container .title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  font-family: 'Poppins',sans-serif;
+}
+.content form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+  font-family: 'Poppins',sans-serif;
+}
+form .user-details .input-box{
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+  font-family: 'Poppins',sans-serif;
+}
+form .input-box span.details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: 'Poppins',sans-serif;
+}
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  font-family: 'Poppins',sans-serif;
+  transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+  border-color: #9b59b6;
+  font-family: 'Poppins',sans-serif;
+}
+ form {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Poppins',sans-serif;
+ }
+ form .category{
+   display: flex;
+   width: 80%;
+   margin: 14px 0 ;
+   justify-content: space-between;
+   font-family: 'Poppins',sans-serif;
+ }
+ form .category label{
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   font-family: 'Poppins',sans-serif;
+ }
+ form .category label .dot{
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+  font-family: 'Poppins',sans-serif;
+}
+
+ form input[type="radio"]{
+   display: none;
+   font-family: 'Poppins',sans-serif;
+ }
+ .sub_btn{
+   height: 45px;
+   margin: 35px 0;
+   font-family: 'Poppins',sans-serif;
+ }
+ .sub_btn input{
+   height: 100%;
+   width: 100%;
+   border-radius: 5px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+   font-family: 'Poppins',sans-serif;
+ }
+ form .sub_btn input:hover{
+
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  }
+ @media(max-width: 584px){
+ .container{
+  max-width: 100%;
+}
+form .user-details .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  form .category{
+    width: 100%;
+  }
+  .content form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+  @media(max-width: 459px){
+  .container .content .category{
+    flex-direction: column;
+  }
+}
+ */
+ .messages * {
+  position: relative;
+  margin-left: 290px;
+}
+
+.messages {
+  bottom: 0;
+  height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  padding-bottom: 15px;
+  z-index: 1000;
+  
+}
+
+.usermsg {
+  /* text-align: right;
+  width: 300px;
+  color: rgb(113, 113, 235);
+  background: #147efb; */
+  text-align: center;
+  width: 300px;
+
+  background: #147efb;
+  color: #fff;
+  height: 40px;
+  border-radius: 28px 28px 0px 28px;
+  margin-left: 450px;
+}
+
+.jmsg {
+  text-align: center;
+  width: 350px;
+  align-items: center;
+  background: #53d769;
+  color: #fff;
+  border-radius: 28px 28px 28px 0px;
+  height: 82;
+  }
+
+.messages::-webkit-scrollbar {
+  display: none;
+}
+
+ .commands {
+  display: none;
+  background-color: white;
+  width: 40%;
+  margin-top: -300px;
+  margin-left: 675px;
+}
+
+.commands p {
+  color: rgb(197, 0, 0);
+}
+
+.fa-solid {
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%); 
+
+}
+
+
+label>span {
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 80%);
+}
+
+input[type="radio"]:checked + label {
+background-color: #8a82fb;
+color: #ffffff;
+box-shadow: 0 15px 45px rgb(24,249,141,0.2);
+border-color: #18f98d;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+/*=============== BATTERY ===============*/
+
+.battery__card {
+  position: relative;
+  width: 60%;
+  height: 150px;
+  background-color: var(--container-color);
+  padding: 1.5rem 2rem;
+  border-radius: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  margin-top: -269px;
+  margin-left: 30px;
+}
+
+.battery__text {
+  margin-bottom: .5rem;
+}
+
+.battery__percentage {
+  font-size: var(--biggest-font-size);
+}
+
+.battery__status {
+  position: absolute;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-size: var(--smaller-font-size);
+}
+
+.battery__status i {
+  font-size: 1.25rem;
+}
+
+.battery__pill {
+  position: relative;
+  width: 50px;
+  height: 100px;
+  background-color: var(--container-color);
+  box-shadow: inset 20px 0 48px hsl(0, 0%, 16%), 
+              inset -4px 12px 48px hsl(0, 0%, 56%);
+  border-radius: 3rem;
+  justify-self: flex-end;
+}
+
+.battery__level {
+  position: absolute;
+  inset: 2px;
+  border-radius: 3rem;
+  overflow: hidden;
+}
+
+.battery__liquid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: var(--gradient-color-red);
+  box-shadow: inset -10px 0 12px hsla(0, 0%, 0%, .1), 
+              inset 12px 0 12px hsla(0, 0%, 0%, .15);
+  transition: .3s;
+}
+
+.battery__liquid::after {
+  content: '';
+  position: absolute;
+  height: 8px;
+  background: var(--gradient-color-red);
+  box-shadow: inset 0px -3px 6px hsla(0, 0%, 0%, .2);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: -4px;
+  border-radius: 50%;
+}
+
+/* Full battery icon color */
+.green-color {
+  background: var(--gradient-color-green);
+}
+
+/* Battery charging animation */
+.animated-green {
+  background: var(--gradient-color-green);
+  animation: animated-charging-battery 1.2s infinite alternate;
+}
+
+/* Low battery animation */
+.animated-red {
+  background: var(--gradient-color-red);
+  animation: animated-low-battery 1.2s infinite alternate;
+}
+
+.animated-green,
+.animated-red,
+.green-color {
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@keyframes animated-charging-battery {
+  0% {
+    text-shadow: none;
+  }
+  100% {
+    text-shadow: 0 0 6px hsl(92, 90%, 68%);
+  }
+}
+
+@keyframes animated-low-battery {
+  0% {
+    text-shadow: none;
+  }
+  100% {
+    text-shadow: 0 0 8px hsl(7, 89%, 46%);
+  }
+}
+
+/* Liquid battery with gradient color */
+.gradient-color-red,
+.gradient-color-red::after {
+  background: var(--gradient-color-red);
+}
+
+.gradient-color-orange,
+.gradient-color-orange::after {
+  background: var(--gradient-color-orange);
+}
+
+.gradient-color-yellow,
+.gradient-color-yellow::after {
+  background: var(--gradient-color-yellow);
+}
+
+.gradient-color-green,
+.gradient-color-green::after {
+  background: var(--gradient-color-green);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .battery__card {
+    zoom: .8;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 430px) {
+  .battery__card {
+    width: 312px;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+  .battery__card {
+    zoom: 1.5;
+  }
+}

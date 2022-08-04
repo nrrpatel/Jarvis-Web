@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/95fec63bc0.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" integrity="sha512-3J8teBiHrSyaaRBajZyIEtpDsXdPq1gsznKWIVb5CnorQuFhjWGhWe54z8YNnHHr7MZuExb9m5kvf964HiT1Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--=============== CSS ===============-->
+    <!-- <link rel="stylesheet" href="battery-level-indicator-main/battery-level-indicator-main/assets/css/styles.css"> -->
+    <title>J.A.R.V.I.S</title>
+</head>
+<body onload="initClock()">
+    <audio src="./power up.mp3" id="turn_on" ></audio>
+    <div class="text">Your virtual web assistant: <span class = "typing"></span></div>
+    <div class="initial">
+    <input type="radio" name="payment" id="card">
+        <label for="card">
+            <i class="fa-solid fa-microphone-lines"></i><span>Start</span>
+        </label>
+        <input type="radio" name="payment" id="cash">
+        <label for="cash">
+            <i class="fa-solid fa-microphone-lines-slash"></i><span>Stop</span>
+        </label>
+    </div>
+    <div class="wrapper">
+        <section class="chat-area">
+            <header>
+
+            </header>
+            <div class="chat-box">
+                <div class="messages"></div>
+        </section>
+    </div>
+    </div>
+    <!-- <div class="jarvis_setup container" >
+        <div class="content">
+          <form>
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Full Name</span>
+                <input type="text" placeholder="Enter your name" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Your City for weather </span>
+                <input type="text" placeholder="Enter your city" required>
+              </div>
+              
+              <div class="input-box">
+                <span class="details">Github Username</span>
+                <input type="text" placeholder="Enter your GitHub username" required>
+              </div>
+
+            </div>
+            <button id="sub_btn">Submit</button>
+             <div class="button">
+              <input type="submit" value="Submit">
+            </div> 
+          </form>
+        </div>
+      </div> -->
+
+    <!-- <div class="in_middle hide_on_small">
+        <label for="">Your Name</label>
+        <input type="text" />
+        <br />
+        <label for="">Your Bio</label>
+        <input type="text" />
+        <br />
+        <label for="">Your Location</label>
+        <input type="text" />
+        <br />
+        <label for="">GitHub Profile</label>
+        <input type="text" />
+        <br />
+        <button id="sub_btn">Submit</button>
+    </div> -->
+    <div class="spotify">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWY6tYEFs22tT?utm_source=generator" width="150%" height="80" frameBorder="0"  allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div> 
+    <section class="battery">
+        <div class="battery__card">
+            <div class="battery__data">
+                <p class="battery__text">Battery</p>
+                <h1 class="battery__percentage">
+                    20%
+                </h1>
+                
+                <p class="battery__status">
+                    Low battery <i class="ri-plug-line"></i>
+                </p>
+            </div>
+            
+            <div class="battery__pill">
+                <div class="battery__level">
+                    <div class="battery__liquid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--digital clock start-->
+    <div class="datetime">
+        <div class="date">
+            <span id="dayname">Day</span>,
+            <span id="month">Month</span>
+            <span id="daynum">00</span>,
+            <span id="year">Year</span>
+        </div>
+        <div class="time">
+            <span id="hour">00</span>:
+            <span id="minutes">00</span>:
+            <span id="seconds">00</span>
+            <span id="period">AM</span>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+                </script>
+    <!--digital clock end-->
+    <div class="commands"></div>
+    <script src="./app.js"></script>
+</body>
+</html>
