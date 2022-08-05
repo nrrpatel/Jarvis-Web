@@ -473,7 +473,14 @@ recognition.onresult = function(event){
     if(transcript.includes("You are fat")){
         readOut("When was the last time you stepped on a scale")
     }
-    
+    if(transcript.includes("open calculator")){
+        window.open('Calculator:///')
+        readOut("opening calculator")
+    }
+    if(transcript.includes("what time is it")){
+        const time = new Date().toLocaleString(undefined, {hour: "numeric", minute: "numeric"})
+        readOut(time)
+    }
     if (transcript.includes("commands")) {
         readOut("sir here's the list of commands i can follow");
         if(window.innerWidth <= 400 ){
@@ -494,8 +501,7 @@ recognition.onresult = function(event){
         windowsB.forEach((e) => {
           e.close()
         })
-    
-      }
+    }
     // if(transcript.includes("search for")){
     //     readOut(`searching on google`)
     //     let input = transcript.split("")
@@ -515,15 +521,6 @@ recognition.onresult = function(event){
         console.log(input)
       }
 
-
-    //   if (transcript.includes("search")) {
-    //     readOut("here's your result");
-    //     let input = transcript.split("");
-    //     input.splice(0, 11 );
-    //     input = input.join("").split(" ").join("+");
-    //     window.open(`https://www.google.com/search?q=${input}`)
-    //     console.log(input)
-    //   }
       if (transcript.includes("play")) {
         let playStr = transcript.split("");
         playStr.splice(0, 5);
@@ -536,8 +533,131 @@ recognition.onresult = function(event){
     //this is the array where all the words the user speaks are listed
     //this is for testing the user recognition it'll speak back what the user is saying
     // readOut(transcript)
+    if (transcript.includes("top headlines")) {
+        readOut("These are today's top headlines sir")
+        getNews()
+    }
+    if (transcript.includes("news regarding")) {
+        // readOut("These are today's top headlines sir")
+        let input = transcript
+        let a = input.indexOf("regarding")
+        input = input.split("")
+        input.splice(0,a+9)
+        input.shift()
+        readOut(`here's some headlines on ${input.join("")}`)
+        getCategoryNews(input.join(""))
+    
+    }
+    if (transcript.includes("search for")) {
+        readOut("here's your result");
+        let input = transcript.split("");
+        input.splice(0, 11);
+        input = input.join("").split(" ").join("+");
+        let a = window.open(`https://www.google.com/search?q=${input}`)
+        windowsB.push(a)
+        console.log(input)
+    }
+    if(transcript.includes("weather in")){
+        getTheWeather(transcript)
+    }
+        
 
 }
+//weather setup
+const getTheWeather = (transcript) => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=d35aa773eeb843dbf143c422fcf1f634&units=metric`) 
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(weather){
+      if (weather.cod === '404') {
+        utterThis = new SpeechSynthesisUtterance(`I cannot find the weather for ${transcript.split(' ')[5]}`);
+        readOut(utterThis);
+        return;
+      }
+      utterThis = new SpeechSynthesisUtterance(`the weather condition in ${weather.name} is mostly full of ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
+      readOut(utterThis);
+    });
+  };
+// async function getWeather(){
+//     var api_key = "d35aa773eeb843dbf143c422fcf1f634"
+//     var base_url = "https://api.openweathermap.org/data/2.5/weather?q="
+//     readOut("Sir, what is the name of the city?")
+//     var city_name = transcript 
+//     var complete_url = base_url + city_name + "&units=metric&appid=" + api_key
+//     var response = requests.get(complete_url)
+//     x = response.json()
+//     if x["cod"] != "404":
+//         y=x["main"]
+//         now_temp = y["temp"]
+//         now_humid = y["humidity"]
+//         z = x["weather"]
+//         weather_desc = z[0]["description"]
+//         speak("The current temperature in celsius in " +city_name+ "is" + str(now_temp) + 
+//                 "\n while the humidity in percentage is " + str(now_humid) +
+//                 "\n and it looks like its" + str(weather_desc) + "in " + city_name)
+// }
+
+//news setup
+async function getNews(){
+    var url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=952912f2a18a4170a25ff2e9d360883f"
+    var req = new Request(url)
+    await fetch(req).then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      let arrNews = data.articles
+      arrNews.length = 10
+      let a = []
+      arrNews.forEach((e,index) => {
+        a.push(index+1)
+        a.push(".........")
+        a.push(e.title)
+        a.push(".........")
+  
+      });
+      readOut(a)
+    })
+  }
+  
+  let date = new Date();
+  // category news
+
+
+  let yyyy,mm,dd
+  
+  dd = date.getDate()
+  mm = date.getMonth()
+  yyyy = date.getFullYear()
+  
+  async function getCategoryNews(category){
+    var url =
+      "https://newsapi.org/v2/everything?" +
+      `q=${category}&` +
+      `from=${yyyy}-${mm}-${dd}&` +
+      "sortBy=popularity&" +
+      "apiKey=952912f2a18a4170a25ff2e9d360883f";
+  
+      // https://newsapi.org/v2/everything?q=Apple&from=2021-09-19&sortBy=popularity&apiKey=API_KEY
+  
+      var req = new Request(url)
+  
+    await fetch(req).then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      let arrNews = data.articles
+      arrNews.length = 10
+      let a = []
+      arrNews.forEach((e,index) => {
+        a.push(index+1)
+        a.push(".........")
+        a.push(e.title)
+        a.push(".........")
+      });
+      readOut(a)
+    })
+  }
+
+
 // speech recognition stop
 recognition.onend = function(){
 
@@ -587,36 +707,8 @@ window.onload = () => {
       setTimeout(() => {
         readOut("Hello, I am Jarvis, your personal voice assistant. Please press the start button if I don't start listening automatically");
         autoJarvis();
+        console.log("new thing")
       }, 500);
     
 }
 
-// const setup = document.querySelector(".jarvis_setup");
-// setup.style.display = "none";
-// if (localStorage.getItem("jarvis_setup") === null) {
-//   setup.style.display = "flex";
-//   setup.querySelector("button").addEventListener("click", userInfo);
-// }
-
-// function userInfo() {
-//   let setupInfo = {
-//     name: setup.querySelectorAll("input")[0].value,
-//     location: setup.querySelectorAll("input")[1].value,
-//     github: setup.querySelectorAll("input")[2].value,
-   
-//   };
-
-//   let testArr = [];
-
-//   setup.querySelectorAll("input").forEach((e) => {
-//     testArr.push(e.value);
-//   });
-
-//   if (testArr.includes("")) {
-//     readOut("sir enter your complete information");
-//   } else {
-//     localStorage.clear();
-//     localStorage.setItem("jarvis_setup", JSON.stringify(setupInfo));
-//     setup.style.display = "none";
-//   }
-// }
