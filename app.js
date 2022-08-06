@@ -574,7 +574,11 @@ const getTheWeather = (transcript) => {
     }).then(function(weather){
       if (weather.cod === '404') {
         readOut(`I cannot find the weather for ${transcript.split(' ')[5]}`);
-        return
+        recognition.stop()
+        setTimeout(() => {
+            recognition.start();
+        }, 2000);
+
       }
       else 
       readOut(`the weather condition in ${weather.name} is mostly full of
@@ -696,9 +700,9 @@ window.onload = () => {
     turn_on.play();
       setTimeout(() => {
         readOut("Hello, I am Jarvis, your personal voice assistant. Please press the start button if I don't start listening automatically");
+        autoJarvis();
         console.log("new")
-    }, 500);
-    autoJarvis();
+      }, 500);
     
 }
 
