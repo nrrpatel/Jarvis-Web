@@ -5,6 +5,8 @@ const speakButton = document.querySelector("#speak");
 const turn_on = document.querySelector("#turn_on")
 const msgs = document.querySelector(".messages");
 const time = document.querySelector(".time")
+
+
 // speech recognition setup
 $(document).ready(function(){
    
@@ -557,46 +559,34 @@ recognition.onresult = function(event){
         windowsB.push(a)
         console.log(input)
     }
-    if(transcript.includes("weather in")){
+    if(transcript.includes("what is the weather in ")){
         getTheWeather(transcript)
     }
         
 
 }
 //weather setup
+
 const getTheWeather = (transcript) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=d35aa773eeb843dbf143c422fcf1f634&units=metric`) 
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
     .then(function(response){
       return response.json();
-    })
-    .then(function(weather){
+    }).then(function(weather){
       if (weather.cod === '404') {
-        utterThis = new SpeechSynthesisUtterance(`I cannot find the weather for ${transcript.split(' ')[5]}`);
-        readOut(utterThis);
-        return;
+        readOut(`I cannot find the weather for ${transcript.split(' ')[5]}`);
+        return
       }
-      utterThis = new SpeechSynthesisUtterance(`the weather condition in ${weather.name} is mostly full of ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
-      readOut(utterThis);
+      else 
+      readOut(`the weather condition in ${weather.name} is mostly full of
+      ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
+      recognition.stop()
+      setTimeout(() => {
+        recognition.start();
+      }, 2000);
+
     });
   };
-// async function getWeather(){
-//     var api_key = "d35aa773eeb843dbf143c422fcf1f634"
-//     var base_url = "https://api.openweathermap.org/data/2.5/weather?q="
-//     readOut("Sir, what is the name of the city?")
-//     var city_name = transcript 
-//     var complete_url = base_url + city_name + "&units=metric&appid=" + api_key
-//     var response = requests.get(complete_url)
-//     x = response.json()
-//     if x["cod"] != "404":
-//         y=x["main"]
-//         now_temp = y["temp"]
-//         now_humid = y["humidity"]
-//         z = x["weather"]
-//         weather_desc = z[0]["description"]
-//         speak("The current temperature in celsius in " +city_name+ "is" + str(now_temp) + 
-//                 "\n while the humidity in percentage is " + str(now_humid) +
-//                 "\n and it looks like its" + str(weather_desc) + "in " + city_name)
-// }
+
 
 //news setup
 async function getNews(){
@@ -706,9 +696,9 @@ window.onload = () => {
     turn_on.play();
       setTimeout(() => {
         readOut("Hello, I am Jarvis, your personal voice assistant. Please press the start button if I don't start listening automatically");
-        autoJarvis();
-        console.log("new thing")
-      }, 500);
+        console.log("new")
+    }, 500);
+    autoJarvis();
     
 }
 
