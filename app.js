@@ -562,7 +562,15 @@ recognition.onresult = function(event){
     if(transcript.includes("what is the weather in ")){
         getTheWeather(transcript)
     }
-        
+    if(transcript.includes("what's the weather in ")){
+        getTheWeather1(transcript)
+    }
+    if(transcript.includes("what's the weather like in ")){
+        getTheWeather2(transcript)
+    }
+    if(transcript.includes("current weather conditions")){
+        geocode.getLocation();
+    }
 
 }
 //weather setup
@@ -589,7 +597,138 @@ const getTheWeather = (transcript) => {
       }, 2000);
 
     });
-  };
+};
+
+const getTheWeather1 = (transcript) => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[4]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
+    .then(function(response){
+      return response.json();
+    }).then(function(weather){
+      if (weather.cod === '404') {
+        readOut(`I cannot find the weather for ${transcript.split(' ')[4]}`);
+        recognition.stop()
+        setTimeout(() => {
+            recognition.start();
+        }, 2000);
+
+      }
+      else 
+      readOut(`the weather condition in ${weather.name} is mostly full of
+      ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
+      recognition.stop()
+      setTimeout(() => {
+        recognition.start();
+      }, 2000);
+
+    });
+};
+
+const getTheWeather2 = (transcript) => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
+    .then(function(response){
+      return response.json();
+    }).then(function(weather){
+      if (weather.cod === '404') {
+        readOut(`I cannot find the weather for ${transcript.split(' ')[5]}`);
+        recognition.stop()
+        setTimeout(() => {
+            recognition.start();
+        }, 2000);
+
+      }
+      else 
+      readOut(`the weather condition in ${weather.name} is mostly full of
+      ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
+      recognition.stop()
+      setTimeout(() => {
+        recognition.start();
+      }, 2000);
+
+    });
+};
+
+let geocode = {
+    
+    reverseGeocode: function(latitude, longitude){
+        var api_key = '934fb04241f049b685069b0414c3f239';
+        var api_url = 'https://api.opencagedata.com/geocode/v1/json'
+      
+        var request_url = api_url
+          + '?'
+          + 'key=' + api_key
+          + '&q=' + encodeURIComponent(latitude + ',' + longitude)
+          + '&pretty=1'
+          + '&no_annotations=1';
+      
+        // see full list of required and optional parameters:
+        // https://opencagedata.com/api#forward
+      
+        var request = new XMLHttpRequest();
+        request.open('GET', request_url, true);
+      
+        request.onload = function() {
+          // see full list of possible response codes:
+          // https://opencagedata.com/api#codes
+      
+          if (request.status === 200){
+            // Success!
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
+            .then(function(response){
+              return response.json();
+            }).then(function(weather){
+              if (weather.cod === '404') {
+                readOut(`I cannot find the weather for ${transcript.split(' ')[5]}`);
+                recognition.stop()
+                setTimeout(() => {
+                    recognition.start();
+                }, 2000);
+        
+              }
+              else 
+              readOut(`the weather condition in ${weather.name} is mostly full of
+              ${weather.weather[0].description} at a temperature of ${weather.main.temp} degrees Celcius`);
+              recognition.stop()
+              setTimeout(() => {
+                recognition.start();
+              }, 2000);
+        
+            });
+            var data = JSON.parse(request.responseText);
+           
+            readOut(`the weather condition in ${data.name} is mostly full of
+            ${data.weat[0].description} at a temperature of ${data.main.temp} degrees Celcius`);
+            data.fetchWeather((data.results[0]).components.city);
+
+      
+          } else if (request.status <= 500){
+            // We reached our target server, but it returned an error
+      
+            console.log("unable to geocode! Response code: " + request.status);
+            var data = JSON.parse(request.responseText);
+            console.log('error msg: ' + data.status.message);
+          } else {
+            console.log("server error");
+          }
+        };
+      
+        request.onerror = function() {
+          // There was a connection error of some sort
+          console.log("unable to connect to server");
+        };
+      
+        request.send();  // make the request
+    },
+    getLocation: function() {
+        function success (data){
+            geocode.reverseGeocode(data.coords.latitude, data.coords.longitude);
+        }
+        if(navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(success, console.error);
+        else {
+            weather.fetchWeather("Barrie");
+        }
+    }
+};
 
 
 //news setup
