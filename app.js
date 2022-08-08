@@ -571,8 +571,63 @@ recognition.onresult = function(event){
     if(transcript.includes("current weather conditions")){
         geocode.getLocation();
     }
+    if(transcript.includes("what")){
+       getAnswer(transcript);
+    }
+    if(transcript.includes("integrate")){
+        getAnswer(transcript);
+    }
+    if(transcript.includes("how")){
+        getAnswer(transcript);
+    }
+    if(transcript.includes("who")){
+        getAnswer(transcript);
+    }
+    if(transcript.includes("define")){
+        getAnswer1(transcript);
+    }
+    if(transcript.includes("where")){
+        getAnswer(transcript);
+    }
+    if(transcript.includes("why")){
+        getAnswer(transcript);
+    }
+
 
 }
+//Wolfram Alpha Setup
+
+// const getAnswer = (transcript) => {
+//     fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&includepodid=Result&format=plaintext`)
+//     .then(function(response){
+//         return response.text()
+//     })
+//     .then(function(data){
+//         console.log(data);
+//     })
+// }
+const getAnswer = (transcript) => {
+    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&includepodid=Result&format=plaintext&output=json`)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data.queryresult.pods[0].subpods[0]);
+        readOut(data.queryresult.pods[0].subpods[0].plaintext)
+    })
+}
+const getAnswer1 = (transcript) => {
+    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data.queryresult.pods[1].subpods[0]);
+        readOut(data.queryresult.pods[1].subpods[0].plaintext)
+    })
+}
+
+
 //weather setup
 
 const getTheWeather = (transcript) => {
