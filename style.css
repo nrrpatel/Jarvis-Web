@@ -636,6 +636,18 @@ body {
     width: 312px;
   }
 }
+@media screen and (max-width:400px){
+  .datetime {
+    width: auto;
+  }
+  .time{
+    font-size: 30px;
+  }
+  .spotify{
+    width: 50% ;
+  }
+  
+}
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
