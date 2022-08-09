@@ -559,6 +559,26 @@ recognition.onresult = function(event){
         windowsB.push(a)
         console.log(input)
     }
+    if (transcript.includes("shut down")) {
+        readOut("Ok sir, commencing shutdown protocol");
+        stopingR = true;
+        recognition.stop();
+    }
+    if (transcript.includes("thank you")) {
+        readOut("It's my duty to help you, let me know if you need more help");
+        stopingR = true;
+        recognition.stop();
+    }
+    if (transcript.includes("goodbye")) {
+        readOut("goodbye and enjoy the rest of your day");
+        stopingR = true;
+        recognition.stop();
+    }
+    if (transcript.includes("stop now")) {
+        readOut("commencing shutdown protocol");
+        stopingR = true;
+        recognition.stop();
+    }
     if(transcript.includes("what is the weather in ")){
         getTheWeather(transcript)
     }
