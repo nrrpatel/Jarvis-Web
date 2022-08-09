@@ -571,27 +571,34 @@ recognition.onresult = function(event){
     if(transcript.includes("current weather conditions")){
         geocode.getLocation();
     }
+    //add the weather function with weather in 
     if(transcript.includes("what")){
-       getAnswer(transcript);
+    //    getAnswer1(transcript);
+       getBestAnswer(transcript)
     }
     if(transcript.includes("integrate")){
-        getAnswer(transcript);
+        getBestAnswer(transcript);
     }
     if(transcript.includes("how")){
-        getAnswer(transcript);
+        getBestAnswer(transcript);
     }
     if(transcript.includes("who")){
-        getAnswer(transcript);
+        getBestAnswer(transcript);
     }
     if(transcript.includes("define")){
-        getAnswer1(transcript);
+        getBestAnswer(transcript);
     }
     if(transcript.includes("where")){
-        getAnswer(transcript);
+        getBestAnswer(transcript);
     }
     if(transcript.includes("why")){
-        getAnswer(transcript);
+        getBestAnswer(transcript);
     }
+    if(transcript.includes("show")){
+        // getImage(transcript)
+    }
+
+
 
 
 }
@@ -606,8 +613,27 @@ recognition.onresult = function(event){
 //         console.log(data);
 //     })
 // }
+const getBestAnswer = (transcript) => {
+    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+    .then(function(response){
+      return response.json();
+    }).then(function(data){
+      if (data.queryresult.pods[0].subpods[0].plaintext === 'false') {
+        readOut(data.queryresult.pods[1].subpods[0].plaintext)
+      }
+      else 
+      readOut(data.queryresult.pods[0].subpods[0].plaintext);
+      readOut(data.queryresult.pods[1].subpods[0].plaintext)
+      recognition.stop()
+      setTimeout(() => {
+        recognition.start();
+      }, 2000);
+
+    });
+};
+
 const getAnswer = (transcript) => {
-    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&includepodid=Result&format=plaintext&output=json`)
+    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
         return response.json();
     })
@@ -616,14 +642,51 @@ const getAnswer = (transcript) => {
         readOut(data.queryresult.pods[0].subpods[0].plaintext)
     })
 }
+
+//this is for the image display which is a work in progress.
+// const getImage = (transcript) => {
+//     fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+//     .then(function(response){
+//         return response.json();
+//     })
+//     .then(function(data){
+//         // console.log(data.queryresult.pods[0].subpods[0]);
+//         // readOut(data.queryresult.pods[0].subpods[0].img.src)
+//         // const imageURL = (data.queryresult.pods[2].subpods[0].imagesource)
+//         const imageURL = ('https://upload.wikimedia.org/wikipedia/commons/6/6a/British_Airways_A320-100_G-BUSB.jpg')
+//         console.log(data.queryresult.pods[2].subpods[0].imagesource);
+//         const reader = new FileReader();
+//             reader.onloadend = () => {
+//             const base64data = reader.result;                
+//             console.log(base64data);
+//         }
+
+//         (async () => {
+//         const response = await fetch(imageURL)
+//         const imageBlob = await response.blob()
+//         const image = reader.readAsDataURL(imageBlob);  
+        
+//         })()
+//             })
+// }
 const getAnswer1 = (transcript) => {
     fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
         return response.json();
     })
     .then(function(data){
-        console.log(data.queryresult.pods[1].subpods[0]);
+        console.log(data.queryresult.pods[1]);
         readOut(data.queryresult.pods[1].subpods[0].plaintext)
+    })
+}
+const getAnswer2 = (transcript) => {
+    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data.queryresult.pods[0].subpods[0].plaintext);
+        readOut(data.queryresult.pods[0].subpods[0].plaintext)
     })
 }
 
