@@ -569,6 +569,11 @@ recognition.onresult = function(event){
         stopingR = true;
         recognition.stop();
     }
+    if (transcript.includes("thanks")) {
+        readOut("It's my duty to help you, let me know if you need more help");
+        stopingR = true;
+        recognition.stop();
+    }
     if (transcript.includes("goodbye")) {
         readOut("goodbye and enjoy the rest of your day");
         stopingR = true;
@@ -614,9 +619,13 @@ recognition.onresult = function(event){
     if(transcript.includes("why")){
         getBestAnswer(transcript);
     }
-    if(transcript.includes("show")){
-        // getImage(transcript)
+    if(transcript.includes("explain")){
+        getBestAnswer(transcript);
     }
+    if(transcript.includes("tell me a joke")){
+        getJoke(transcript);
+    }
+
 
 
 
@@ -652,14 +661,14 @@ const getBestAnswer = (transcript) => {
     });
 };
 
-const getAnswer = (transcript) => {
-    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+const getJoke = (transcript) => {
+    fetch(`https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,racist`)
     .then(function(response){
         return response.json();
     })
     .then(function(data){
-        console.log(data.queryresult.pods[0].subpods[0]);
-        readOut(data.queryresult.pods[0].subpods[0].plaintext)
+        console.log(data.joke);
+        readOut(data.joke)
     })
 }
 
