@@ -398,7 +398,7 @@ form .user-details .input-box{
   display: flex;
   flex-direction: column;
   align-items: center;
- 
+  overflow-x:hidden;
   padding-bottom: 15px;
   z-index: 1000;
   
@@ -636,7 +636,7 @@ body {
     width: 312px;
   }
 }
-@media screen and (max-width:400px){
+@media screen and (max-width:600px){
   .datetime {
     width: auto;
   }
@@ -653,5 +653,20 @@ body {
 @media screen and (min-width: 1024px) {
   .battery__card {
     zoom: 1.5;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .datetime {
+    width: 40%;
+  }
+  .time{
+    font-size: 30px;
+  }
+  .spotify{
+    width: 25% ;
+  }
+  .text{
+    font-size: 40px;
   }
 }

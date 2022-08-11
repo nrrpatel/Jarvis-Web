@@ -430,15 +430,6 @@ recognition.onresult = function(event){
     if(transcript.includes("hi jarvis")){
         readOut("hello, hope you are well ")
     }
-    if(transcript.includes("how are you")){
-        readOut("I am good, how are you?")
-    }
-    if(transcript.includes("i am good")){
-        readOut("glad to hear that, how can i help")
-    }
-    if(transcript.includes("not good")){
-        readOut("that's not good, how can i help?")
-    }
     if(transcript.includes("yo Jarvis ")){
         readOut("yo how can I help you my bro")
     }
@@ -579,6 +570,23 @@ recognition.onresult = function(event){
         stopingR = true;
         recognition.stop();
     }
+    if (transcript.includes("where are you")) {
+        readOut("I live on the web");
+    }
+    if (transcript.includes("good morning")) {
+        readOut("Good morning I hope your day will be good");
+    }
+    if (transcript.includes("good afternoon")) {
+        readOut("Good afternoon I hope your day is going well");
+    }
+    if (transcript.includes("good evening")) {
+        readOut("Good evening I hope your day is going well");
+    }
+    if (transcript.includes("good night")) {
+        readOut("Good night sir");
+        stopingR = true;
+        recognition.stop();
+    }
     if (transcript.includes("stop now")) {
         readOut("commencing shutdown protocol");
         stopingR = true;
@@ -617,6 +625,9 @@ recognition.onresult = function(event){
         getBestAnswer(transcript);
     }
     if(transcript.includes("why")){
+        getBestAnswer(transcript);
+    }
+    if(transcript.includes("translate")){
         getBestAnswer(transcript);
     }
     if(transcript.includes("explain")){
@@ -662,15 +673,16 @@ const getBestAnswer = (transcript) => {
 };
 
 const getJoke = (transcript) => {
-    fetch(`https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,racist`)
+    fetch(`https://v2.jokeapi.dev/joke/Programming,Misc?format=json&blacklistFlags=nsfw,sexist&type=single&lang=en`)
     .then(function(response){
         return response.json();
     })
     .then(function(data){
-        console.log(data.joke);
+        console.log(data);
         readOut(data.joke)
     })
 }
+
 
 //this is for the image display which is a work in progress.
 // const getImage = (transcript) => {
