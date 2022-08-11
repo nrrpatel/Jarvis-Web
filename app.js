@@ -731,6 +731,8 @@ const getAnswer2 = (transcript) => {
     })
 }
 
+//timer setup
+
 
 //weather setup
 
@@ -1003,4 +1005,7 @@ window.onload = () => {
       }, 500);
     
 }
+
+
+
 
