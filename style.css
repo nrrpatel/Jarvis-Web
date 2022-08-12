@@ -85,9 +85,40 @@
   margin-left: 45px;
 }
 
+.timer{
+  font-size: 20px;
+  color: #fff;
+  background: hsl(0, 0%, 9%);
+  font-family: "Segoe UI", sans-serif;
+  width: 465px;
+  padding: 30px 10px;
+  border: 3px solid hsl(0, 0%, 9%);
+  border-radius: 25px;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 255, 255, 0.09));
+  transition: 0.5s;
+  transition-property: background, box-shadow;
+  margin-left: 45px;
+}
+.displayTimeLeft{
+  font-size: 20px;
+}
 .datetime:hover{
   background: #2E94E3;
   box-shadow: 0 0 30px #2E94E3;
+}
+
+
+.buttonContainer {
+    display: inline-block;
+    background: crimson;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 16px;
+    margin-top: 20px;
+    border-radius: 6px;
+    border: 2px solid crimson;
+    transition: all 0.3s ease;
 }
 
 .date{

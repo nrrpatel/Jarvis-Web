@@ -36,48 +36,6 @@
         </section>
     </div>
     </div>
-    <!-- <div class="jarvis_setup container" >
-        <div class="content">
-          <form>
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">Full Name</span>
-                <input type="text" placeholder="Enter your name" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Your City for weather </span>
-                <input type="text" placeholder="Enter your city" required>
-              </div>
-              
-              <div class="input-box">
-                <span class="details">Github Username</span>
-                <input type="text" placeholder="Enter your GitHub username" required>
-              </div>
-
-            </div>
-            <button id="sub_btn">Submit</button>
-             <div class="button">
-              <input type="submit" value="Submit">
-            </div> 
-          </form>
-        </div>
-      </div> -->
-
-    <!-- <div class="in_middle hide_on_small">
-        <label for="">Your Name</label>
-        <input type="text" />
-        <br />
-        <label for="">Your Bio</label>
-        <input type="text" />
-        <br />
-        <label for="">Your Location</label>
-        <input type="text" />
-        <br />
-        <label for="">GitHub Profile</label>
-        <input type="text" />
-        <br />
-        <button id="sub_btn">Submit</button>
-    </div> -->
     <div class="spotify">
         <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWY6tYEFs22tT?utm_source=generator" width="150%" height="80" frameBorder="0"  allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> -->
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWY6tYEFs22tT?utm_source=generator" width="150%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
@@ -123,6 +81,28 @@
         
                 </script>
     <!--digital clock end-->
+          <!-- Timer Navigation Bar  -->
+        <div class="timer">
+
+      
+        <!-- Timer Text Coundown, Time to return from break, Play/Pause/Stop Buttons, and alarm audio element -->
+          <div class="displayTimeContainer">
+            <h1 class="displayTimeLeft"></h1>
+            <p class="displayEndTime"></p>
+  
+            <div class="buttonContainer">
+              <button class="timerModifiers stop" title="Stop Timer" data-method="stop"> Stop </button>
+              <button class="timerModifiers pause"  title="Pause Timer" data-method="pause"> Pause </button>
+              <button class="timerModifiers play"  title="Play Timer" data-method="play"> Play </div>
+            </div> 
+  
+            <audio class="timer-sound">
+                <source src="./radar.mp3" type="audio/mpeg">
+            </audio>
+          </div> 
+        </div>
+  
+        </div> 
     <div class="commands"></div>
     <script src="./app.js"></script>
 </body>

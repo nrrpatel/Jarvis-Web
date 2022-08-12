@@ -1,17 +1,17 @@
 let countdown; // This will be an interval that needs to be ran/cleared in several places 
 let timerExpired; // This will be an interval that needs to be ran/cleared in several places
 let timeLeft; // This is a variable so the 'Pause' and 'Play' buttons can reference the remaining time left once paused
-let errorMessage; // Error message when you've waited too long to speak for voice recognition
-const timerDisplay = document.querySelector('.displayTimeLeft'); // Div for displaying countdown duration
-const endTimeDisplay = document.querySelector('.displayEndTime'); // Div for displaying timer end time 
-const timerButtons = document.querySelectorAll('.timerButton'); // Quick select preset timer buttons 
-const timerModifierButtons = document.querySelectorAll('.timerModifiers'); // Pause/Stop Buttons below countdown on screen
-const timerSound = document.querySelector(".timer-sound"); // Alarm sound from audio element
-const customTimeButton = document.querySelector(".custom-time-button"); // The 'Play' button next to the custom time input
-const customTimeInput = document.querySelector('.custom-time-input');
-const customTimeForm = document.querySelector('.customTimeForm');
-const voiceRecognitionButton = document.querySelector(".voiceRecognitionButton");
-const timerControls = document.querySelector(".timerControls"); // The timer container holding all preset timer value buttons
+// let errorMessage; // Error message when you've waited too long to speak for voice recognition
+// const timerDisplay = document.querySelector('.displayTimeLeft'); // Div for displaying countdown duration
+// const endTimeDisplay = document.querySelector('.displayEndTime'); // Div for displaying timer end time 
+// const timerButtons = document.querySelectorAll('.timerButton'); // Quick select preset timer buttons 
+// const timerModifierButtons = document.querySelectorAll('.timerModifiers'); // Pause/Stop Buttons below countdown on screen
+// const timerSound = document.querySelector(".timer-sound"); // Alarm sound from audio element
+// const customTimeButton = document.querySelector(".custom-time-button"); // The 'Play' button next to the custom time input
+// const customTimeInput = document.querySelector('.custom-time-input');
+// const customTimeForm = document.querySelector('.customTimeForm');
+// const voiceRecognitionButton = document.querySelector(".voiceRecognitionButton");
+// const timerControls = document.querySelector(".timerControls"); // The timer container holding all preset timer value buttons
 // Runs timer, and displays timer duration
 function timer(seconds) {
     // Clears any timers and error messages off screen before beginning a new timer
@@ -129,11 +129,11 @@ function endTimer() {
     timerSound.currentTime = 0;
 }
 ;
-timerModifierButtons.forEach(button => button.addEventListener('click', adjustTimer)); // Gives Pause/Stop button 'Click' functionality
-timerButtons.forEach(button => button.addEventListener('click', runButton)); // Gives preset value buttons 'Click' functionality
-customTimeForm.addEventListener('submit', customTime); // Allows input of custom timer duration within input field
-customTimeButton.addEventListener('click', customTime);
-window.addEventListener('resize', () => window.innerWidth > 500 && timerControls.classList.remove("hidden")); // If controls are hidden in mobile view, and the view switches to desktop, then display the controls
+// timerModifierButtons.forEach(button => button.addEventListener('click', adjustTimer)); // Gives Pause/Stop button 'Click' functionality
+// timerButtons.forEach(button => button.addEventListener('click', runButton)); // Gives preset value buttons 'Click' functionality
+// customTimeForm.addEventListener('submit', customTime); // Allows input of custom timer duration within input field
+// customTimeButton.addEventListener('click', customTime);
+// window.addEventListener('resize', () => window.innerWidth > 500 && timerControls.classList.remove("hidden")); // If controls are hidden in mobile view, and the view switches to desktop, then display the controls
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
