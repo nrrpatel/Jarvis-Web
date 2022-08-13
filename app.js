@@ -1015,7 +1015,7 @@ window.onload = () => {
     recognition.start();
     // If voice recognition duration expires, display error message
     errorMessage = setTimeout(() => {
-        endTimeDisplay.textContent = "Woops! \r\n You waited too long to speak. \r\n Click 'Voice Control' to restart.";
+        endTimeDisplay.textContent = "Please set a timer to begin ";
         document.title = "Voice Recognition Failed";
     }, 8000);
       
@@ -1047,7 +1047,7 @@ function timer(seconds) {
     // Displays countdown time and displays timer's end time
     const now = Date.now();
     const then = now + seconds * 1000;
-    timerDisplay.style.fontSize = '5rem';
+    timerDisplay.style.fontSize = '3rem';
     displayTimeLeft(seconds);
     displayEndTime(then);
     // Subtracts a second from remaining timer duration, every second, and updates the amount of time left
