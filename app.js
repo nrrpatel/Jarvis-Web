@@ -1004,13 +1004,25 @@ window.onload = () => {
         console.log("new")
       }, 500);
 
-      clearInterval(countdown);
-      timerModifierButtons.forEach(button => button.style.display = 'none');
-      timerDisplay.textContent = '';
+    //   clearInterval(countdown);
+    //   timerModifierButtons.forEach(button => button.style.display = 'none');
+    //   timerDisplay.textContent = ''; 
+    clearInterval(countdown);
+    timerModifierButtons.forEach(button => button.style.display = 'none');
+    timerDisplay.textContent = '';
+    endTimeDisplay.textContent = 'Listening for a time duration...';
+    document.title = 'Listening...';
+    recognition.start();
+    // If voice recognition duration expires, display error message
+    errorMessage = setTimeout(() => {
+        endTimeDisplay.textContent = "Woops! \r\n You waited too long to speak. \r\n Click 'Voice Control' to restart.";
+        document.title = "Voice Recognition Failed";
+    }, 8000);
       
 }
 
-//Timer start
+
+// //Timer start
 
 let countdown; // This will be an interval that needs to be ran/cleared in several places 
 let timerExpired; // This will be an interval that needs to be ran/cleared in several places
@@ -1035,7 +1047,7 @@ function timer(seconds) {
     // Displays countdown time and displays timer's end time
     const now = Date.now();
     const then = now + seconds * 1000;
-    timerDisplay.style.fontSize = '20rem';
+    timerDisplay.style.fontSize = '5rem';
     displayTimeLeft(seconds);
     displayEndTime(then);
     // Subtracts a second from remaining timer duration, every second, and updates the amount of time left
@@ -1074,28 +1086,7 @@ function displayEndTime(timestamp) {
     endTimeDisplay.textContent = `Arrive back at ${hour > 12 ? hour - 12 : hour}:${minutes < 10 ? '0' : ''}${minutes} ${hour > 12 ? "PM" : "AM"}`;
 }
 
-// Takes in custom time duration within input field
-function customTime(e) {
-    e.preventDefault();
-    if (customTimeInput.value !== '') {
-        endTimer();
-        timerDisplay.classList.remove("paused");
-        if (!isNaN(+customTimeInput.value)) {
-            const timeValue = +customTimeInput.value * 60;
-            timer(timeValue);
-            customTimeInput.value = '';
-        }
-        else {
-            clearInterval(countdown);
-            timerDisplay.textContent = '';
-            timerModifierButtons.forEach(button => button.style.display = 'none');
-            endTimeDisplay.textContent = "Please input a valid time value.";
-        }
-        if (window.innerWidth <= 500) {
-            timerControls.classList.add("hidden");
-        }
-    }
-}
+
 // Pause/Stop button functionality
 function adjustTimer(e) {
     // If 'Stop' button is pressed, clear timer, timer displays, and hide Play/Pause/Stop buttons
@@ -1109,7 +1100,7 @@ function adjustTimer(e) {
         document.title = 'Voice Recognition Timer';
         timerControls.classList.remove("hidden");
     }
-    if (transcript.includes('pause') ) {
+    if (e.target.dataset.method === 'pause') {
         clearInterval(countdown);
         if (timerDisplay.textContent) {
             timeLeft = timerDisplay.textContent;
@@ -1124,18 +1115,14 @@ function adjustTimer(e) {
         timerDisplay.classList.remove("paused");
         timer(resumeTime);
     }
-}
+ }
 function endTimer() {
     clearInterval(timerExpired);
     timerSound.pause();
     timerSound.currentTime = 0;
 }
 ;
-// timerModifierButtons.forEach(button => button.addEventListener('click', adjustTimer)); // Gives Pause/Stop button 'Click' functionality
-// timerButtons.forEach(button => button.addEventListener('click', runButton)); // Gives preset value buttons 'Click' functionality
-// customTimeForm.addEventListener('submit', customTime); // Allows input of custom timer duration within input field
-// customTimeButton.addEventListener('click', customTime);
-// window.addEventListener('resize', () => window.innerWidth > 500 && timerControls.classList.remove("hidden")); // If controls are hidden in mobile view, and the view switches to desktop, then display the controls
+ timerModifierButtons.forEach(button => button.addEventListener('click', adjustTimer)); // Gives Pause/Stop button 'Click' functionality
 
 // Listening for voice command
 recognition.addEventListener('result', e => {
@@ -1178,18 +1165,7 @@ recognition.addEventListener('result', e => {
     }
 });
 // When 'Voice Recognition' button is clicked - Clear timer and timer display - Display "listening..." notification - Begin listening to user
-voiceRecognitionButton.onclick = () => {
-    clearInterval(countdown);
-    timerModifierButtons.forEach(button => button.style.display = 'none');
-    timerDisplay.textContent = '';
-    endTimeDisplay.textContent = 'Listening for a time duration...';
-    document.title = 'Listening...';
-    recognition.start();
-    // If voice recognition duration expires, display error message
-    errorMessage = setTimeout(() => {
-        endTimeDisplay.textContent = "Woops! \r\n You waited too long to speak. \r\n Click 'Voice Control' to restart.";
-        document.title = "Voice Recognition Failed";
-    }, 8000);
-};
+
 
 //Timer end
+
