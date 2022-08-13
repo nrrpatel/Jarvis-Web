@@ -592,6 +592,11 @@ recognition.onresult = function(event){
         stopingR = true;
         recognition.stop();
     }
+    if (transcript.includes("sleep")) {
+        readOut("commencing sleeping protocol");
+        stopingR = true;
+        recognition.stop();
+    }
     if(transcript.includes("what is the weather in ")){
         getTheWeather(transcript)
     }
@@ -639,7 +644,86 @@ recognition.onresult = function(event){
     if(transcript.includes("song")){
         playMusic(transcript);
     }
-
+    if(transcript.includes("stop the timer")){
+        readOut("Timer stopped")
+        endTimer()
+        clearInterval(countdown);
+        timerDisplay.classList.remove("paused");
+        timerDisplay.textContent = '';
+        endTimeDisplay.textContent = "Voice Recognition Timer";
+        timerModifierButtons.forEach(button => button.style.display = 'none');
+        document.title = 'Voice Recognition Timer';
+        recognition.stop()
+        setTimeout(() => {
+            autoJarvis();
+        }, 10);
+        
+    }
+    if(transcript.includes("stop timer")){
+        readOut("Timer stopped")
+        endTimer()
+        clearInterval(countdown);
+        timerDisplay.classList.remove("paused");
+        timerDisplay.textContent = '';
+        endTimeDisplay.textContent = "Voice Recognition Timer";
+        timerModifierButtons.forEach(button => button.style.display = 'none');
+        document.title = 'Voice Recognition Timer';
+        recognition.stop()
+        setTimeout(() => {
+            autoJarvis();
+        }, 10);
+        
+    }
+    if(transcript.includes("pause the timer")){
+        readOut("Pausing Timer")
+        clearInterval(countdown);
+        if (timerDisplay.textContent) {
+            timeLeft = timerDisplay.textContent;
+        }
+        timerDisplay.classList.add("paused");
+        endTimeDisplay.textContent = `The timer is currently paused...`;
+        document.title = `${timeLeft} (Paused)`;
+        recognition.stop()
+        setTimeout(() => {
+            autoJarvis();
+        }, 10);
+    }
+    if(transcript.includes("pause timer")){
+        readOut("Pausing Timer")
+        clearInterval(countdown);
+        if (timerDisplay.textContent) {
+            timeLeft = timerDisplay.textContent;
+        }
+        timerDisplay.classList.add("paused");
+        endTimeDisplay.textContent = `The timer is currently paused...`;
+        document.title = `${timeLeft} (Paused)`;
+        recognition.stop()
+        setTimeout(() => {
+            autoJarvis();
+        }, 10);
+    }
+    if(transcript.includes("start the timer again")){
+        readOut("Timer started again")
+        const splitTime = timeLeft.split(":");
+        const resumeTime = (+splitTime[0] * 60) + +splitTime[1];
+        timerDisplay.classList.remove("paused");
+        timer(resumeTime);
+        recognition.stop()
+        setTimeout(() => {
+            autoJarvis();
+        }, 10);
+    }
+    
+    if(transcript.includes("start it again")){
+        const splitTime = timeLeft.split(":");
+        const resumeTime = (+splitTime[0] * 60) + +splitTime[1];
+        timerDisplay.classList.remove("paused");
+        timer(resumeTime);
+        recognition.stop()
+        setTimeout(() => {
+            autoJarvis();
+        }, 10);
+    }
 
 }
 //Wolfram Alpha Setup
@@ -1117,9 +1201,11 @@ function adjustTimer(e) {
     }
  }
 function endTimer() {
+    autoJarvis()    
     clearInterval(timerExpired);
     timerSound.pause();
     timerSound.currentTime = 0;
+    
 }
 ;
  timerModifierButtons.forEach(button => button.addEventListener('click', adjustTimer)); // Gives Pause/Stop button 'Click' functionality
