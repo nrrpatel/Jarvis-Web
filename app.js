@@ -738,7 +738,7 @@ recognition.onresult = function(event){
 //     })
 // }
 const getBestAnswer = (transcript) => {
-    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+    fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
       return response.json();
     }).then(function(data){
@@ -795,7 +795,7 @@ const getJoke = (transcript) => {
 //             })
 // }
 const getAnswer1 = (transcript) => {
-    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+    fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
         return response.json();
     })
@@ -805,7 +805,7 @@ const getAnswer1 = (transcript) => {
     })
 }
 const getAnswer2 = (transcript) => {
-    fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+    fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
         return response.json();
     })
@@ -821,7 +821,7 @@ const getAnswer2 = (transcript) => {
 //weather setup
 
 const getTheWeather = (transcript) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
     .then(function(response){
       return response.json();
     }).then(function(weather){
@@ -845,7 +845,7 @@ const getTheWeather = (transcript) => {
 };
 
 const getTheWeather1 = (transcript) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[4]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[4]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
     .then(function(response){
       return response.json();
     }).then(function(weather){
@@ -869,7 +869,7 @@ const getTheWeather1 = (transcript) => {
 };
 
 const getTheWeather2 = (transcript) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${transcript.split(' ')[5]}&appid=6aa90859f3e957ff6c77ec9b1bc86296&units=metric`)
     .then(function(response){
       return response.json();
     }).then(function(weather){
