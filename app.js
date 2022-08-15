@@ -6,7 +6,6 @@ const turn_on = document.querySelector("#turn_on")
 const msgs = document.querySelector(".messages");
 const time = document.querySelector(".time")
 
-
 // speech recognition setup
 $(document).ready(function(){
    
@@ -737,6 +736,64 @@ recognition.onresult = function(event){
 //         console.log(data);
 //     })
 // }
+
+// const getBestAnswer = (transcript) => {
+//     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)}`)
+//                     .then(response => {
+//                       if (response.ok) return response.json()
+//                       throw new Error('Network response was not ok.')
+//                     })
+//                     // .then(data => console.log(data.contents));
+//                     .then(function(data){
+//                         console.log(data.contents)
+//                         //   if (data.contents.pods[0].subpods[0].plaintext === 'false') {
+//                         //     readOut(data.queryresult.pods[1].subpods[0].plaintext)
+//                         //   }
+//                         //   else 
+//                         //   readOut(data.queryresult.pods[0].subpods[0].plaintext);
+//                         //   readOut(data.queryresult.pods[1].subpods[0].plaintext)
+//                         //   recognition.stop()
+//                         //   setTimeout(() => {
+//                         //     recognition.start();
+//                         //   }, 2000);
+                    
+//                         });
+//     // fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
+//     // .then(function(response){
+//     //   return response.json();
+//     // }).then(function(data){
+//     //   if (data.queryresult.pods[0].subpods[0].plaintext === 'false') {
+//     //     readOut(data.queryresult.pods[1].subpods[0].plaintext)
+//     //   }
+//     //   else 
+//     //   readOut(data.queryresult.pods[0].subpods[0].plaintext);
+//     //   readOut(data.queryresult.pods[1].subpods[0].plaintext)
+//     //   recognition.stop()
+//     //   setTimeout(() => {
+//     //     recognition.start();
+//     //   }, 2000);
+
+//     // });
+// };
+// const getBestAnswer = (transcript) => {
+//     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&includepodid=Result&output=json`)}`)                  
+//     .then(function(response){
+//       return response.json();
+//     }).then(function(data){
+//         console.log(data.contents);
+//     //   if (data.contents.queryresult.pods[0].subpods[0].plaintext === 'false') {
+//     //     readOut(data.contents.queryresult.pods[1].subpods[0].plaintext)
+//     //   }
+//     //   else 
+//     //   readOut(data.queryresult.pods[0].subpods[0].plaintext);
+//     //   readOut(data.queryresult.pods[1].subpods[0].plaintext)
+//     //   recognition.stop()
+//     //   setTimeout(() => {
+//     //     recognition.start();
+//     //   }, 2000);
+
+//     });
+// };
 const getBestAnswer = (transcript) => {
     fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
