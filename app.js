@@ -1219,7 +1219,7 @@ recognition.addEventListener('result', e => {
         .map(result => result.transcript)
         .join('');
     if (youreDoneSpeaking && (transcript.includes("set a timer for") || transcript.includes("set timer for"))) {
-        
+        readOut("Understood")
         let lastWordSpoken = transcript.split(' ')[transcript.split(' ').length - 1];
         let timeValues = transcript.split(' ').filter(value => !isNaN(+value));
         // If the user speaks more than one number value, such as, 2 minutes AND 30 seconds, 
