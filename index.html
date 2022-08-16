@@ -15,10 +15,49 @@
     <title>J.A.R.V.I.S</title>
 </head>
 <body onload="initClock()">
+
+    
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">Important Info!</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            Please install the CORS proxy to use the computational intellgence features of JARVIS. To install, please start JARVIS and say "Install the extension" or <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf" target="_blank">click here</a>
+        </div>
+        
+    </div>
+    <div id="overlay"></div>
+    <!-- <div class="popup">
+        <button id="close">&times;</button>
+        <h2>Before using JARVIS</h2>
+        <p>
+            In order to use JARVIS, please install this chrome extension and enable it before using it in order to use JARVIS at its full potential. THANKS!
+        </p>
+        <a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf">Let's Go</a>
+    </div>
+    <script>
+        function toggle() {
+            var blur=document.getElementById('blur');
+            blur.classList.toggle('active');
+            var popup = document.getElementById('popup');
+            popup.classList.toggle('active');
+        }
+    </script> -->
+    <!-- <script>
+        $(document).ready(function() {
+            if(sessionStorage.getItem('#popup')!=='true')
+            {
+                $('#popup').modal('show');
+                sessionStorage.setItem('#popup',true);
+            }
+        });
+        
+    </script> --> 
     <audio src="./power up.mp3" id="turn_on" ></audio>
     <div class="text">Your virtual web assistant: <span class = "typing"></span></div>
     <div class="initial">
-    <input type="radio" name="payment" id="card">
+        <input type="radio" name="payment" id="card">
         <label for="card">
             <i class="fa-solid fa-microphone-lines"></i><span>Start</span>
         </label>
@@ -41,6 +80,7 @@
         <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWY6tYEFs22tT?utm_source=generator" width="150%" height="80" frameBorder="0"  allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> -->
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWY6tYEFs22tT?utm_source=generator" width="150%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div> 
+    <button class="thing" data-modal-target="#modal">Important Info!</button>
     
     <section class="battery">
         <div class="battery__card">

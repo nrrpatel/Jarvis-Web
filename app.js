@@ -6,6 +6,55 @@ const turn_on = document.querySelector("#turn_on")
 const msgs = document.querySelector(".messages");
 const time = document.querySelector(".time")
 
+const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay')
+
+openModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal)
+  })
+})
+
+overlay.addEventListener('click', () => {
+  const modals = document.querySelectorAll('.modal.active')
+  modals.forEach(modal => {
+    closeModal(modal)
+  })
+})
+
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal')
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if (modal == null) return
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+  if (modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
+}
+// window.addEventListener("load", function(){
+//     setTimeout(
+//         function open(event){
+//             document.querySelector(".popup").style.display = "block";
+//         },
+//         1000
+//     )
+// });
+
+
+// document.querySelector("#close").addEventListener("click", function(){
+//     document.querySelector(".popup").style.display = "none";
+// });
 // speech recognition setup
 $(document).ready(function(){
    
@@ -184,6 +233,11 @@ recognition.onresult = function(event){
     if(transcript.includes("open youtube")){
         readOut("opening youtube sir")
         let a = window.open("https://www.youtube.com/");
+        windowsB.push(a)
+    }
+    if(transcript.includes("install the extension")){
+        readOut("opening CORS proxy sir")
+        let a = window.open("https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf");
         windowsB.push(a)
     }
 
@@ -1133,6 +1187,17 @@ function autoJarvis() {
 
 // on startup
 window.onload = () => {
+
+    openModal(modal)
+    // setTimeout(
+    //     function open(event){
+    //         document.querySelector(".popup").style.display = "block";
+    //     },
+    //     1000
+    // ) 
+    // document.querySelector("#close").addEventListener("click", function(){
+    //     document.querySelector(".popup").style.display = "none";
+    // });
     initClock()
     jarvisComs.forEach((e) => {
         document.querySelector(".commands").innerHTML += `<p>#${e}</p><br />`;
