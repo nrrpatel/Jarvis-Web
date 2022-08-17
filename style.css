@@ -197,8 +197,7 @@
   outline: 0;
 
   position: absolute;
-  top: 20%;
-  left: 73%;
+
 }
  .thing:hover{
   background: crimson;
@@ -455,11 +454,21 @@ label{
   
 }
 .spotify{
-  position: absolute;
+  /* position: fixed; 
   left:4%;
-  top: 25%;
+  top: 25%;  */
+    color: #fff;
+    background: hsl(0, 0%, 9%);
+    font-family: "Segoe UI", sans-serif;
+    width: 465px;
+    padding: 30px 10px;
+    border: 3px solid hsl(0, 0%, 9%);
+    border-radius: 25px;
+    position: absolute;
+    margin-left: 45px;
+    margin-top: 10px;
 
-  
+   
 } 
   
  .messages * {
@@ -725,11 +734,23 @@ body {
   
 }
 
+/* @media screen and (max-width: 1500px){
+.spotify{
+  position: absolute;
+  left:4%;
+  top: 18%;
+} 
+} */
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .battery__card {
     zoom: 1.5;
   }
+  /* .spotify{
+    position: absolute;
+    left:4%;
+    top: 26%;
+  }  */
 }
 
 @media screen and (max-width: 900px) {
