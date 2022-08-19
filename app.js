@@ -529,19 +529,17 @@ recognition.onresult = function(event){
     }
     if (transcript.includes("commands")) {
         readOut("sir here's the list of commands i can follow");
-        if(window.innerWidth <= 400 ){
-          window.resizeTo(screen.width,screen.height)
-        }
-        document.querySelector(".commands").style.display = "block";
+        let a = window.open("https://commands-guide.netlify.app/")
+        windowsB.push(a)
     }
-    if (transcript.includes("close this")) {
-        readOut("closing the tab sir");
-        document.querySelector(".commands").style.display = "none";
-        if(window.innerWidth >= 401 ){
-          window.resizeTo(250,250)
-        }
-        setup.style.display = "none";
-      }
+    // if (transcript.includes("close this")) {
+    //     readOut("closing the tab sir");
+    //     document.querySelector(".commands").style.display = "none";
+    //     if(window.innerWidth >= 401 ){
+    //       window.resizeTo(250,250)
+    //     }
+    //     setup.style.display = "none";
+    //   }
     if (transcript.includes("close all tabs")) {
         readOut("closing all tabs sir")
         windowsB.forEach((e) => {
@@ -653,6 +651,7 @@ recognition.onresult = function(event){
     if(transcript.includes("what is the weather in ")){
         getTheWeather(transcript)
     }
+    
     if(transcript.includes("what's the weather in ")){
         getTheWeather1(transcript)
     }
@@ -854,9 +853,11 @@ const getBestAnswer = (transcript) => {
       return response.json();
     }).then(function(data){
       if (data.queryresult.pods[0].subpods[0].plaintext === 'false') {
+        console.log(data.queryresult);
         readOut(data.queryresult.pods[1].subpods[0].plaintext)
       }
       else 
+      console.log(data.queryresult);
       readOut(data.queryresult.pods[0].subpods[0].plaintext);
       readOut(data.queryresult.pods[1].subpods[0].plaintext)
       recognition.stop()
