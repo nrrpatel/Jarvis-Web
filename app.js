@@ -423,7 +423,7 @@ recognition.onresult = function(event){
         windowsB.push(a)
     }
 
-// here is the shit 
+//Other educational commands
 
     if(transcript.includes("open waterlooworks")){
         readOut("opening waterloo works sir")
@@ -651,7 +651,6 @@ recognition.onresult = function(event){
     if(transcript.includes("what is the weather in ")){
         getTheWeather(transcript)
     }
-    
     if(transcript.includes("what's the weather in ")){
         getTheWeather1(transcript)
     }
@@ -661,9 +660,8 @@ recognition.onresult = function(event){
     if(transcript.includes("current weather conditions")){
         geocode.getLocation();
     }
-    //add the weather function with weather in 
+    //added the weather function with weather in 
     if(transcript.includes("what")){
-    //    getAnswer1(transcript);
        getBestAnswer(transcript)
     }
     if(transcript.includes("integrate")){
@@ -780,73 +778,6 @@ recognition.onresult = function(event){
 }
 //Wolfram Alpha Setup
 
-// const getAnswer = (transcript) => {
-//     fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&includepodid=Result&format=plaintext`)
-//     .then(function(response){
-//         return response.text()
-//     })
-//     .then(function(data){
-//         console.log(data);
-//     })
-// }
-
-// const getBestAnswer = (transcript) => {
-//     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)}`)
-//                     .then(response => {
-//                       if (response.ok) return response.json()
-//                       throw new Error('Network response was not ok.')
-//                     })
-//                     // .then(data => console.log(data.contents));
-//                     .then(function(data){
-//                         console.log(data.contents)
-//                         //   if (data.contents.pods[0].subpods[0].plaintext === 'false') {
-//                         //     readOut(data.queryresult.pods[1].subpods[0].plaintext)
-//                         //   }
-//                         //   else 
-//                         //   readOut(data.queryresult.pods[0].subpods[0].plaintext);
-//                         //   readOut(data.queryresult.pods[1].subpods[0].plaintext)
-//                         //   recognition.stop()
-//                         //   setTimeout(() => {
-//                         //     recognition.start();
-//                         //   }, 2000);
-                    
-//                         });
-//     // fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
-//     // .then(function(response){
-//     //   return response.json();
-//     // }).then(function(data){
-//     //   if (data.queryresult.pods[0].subpods[0].plaintext === 'false') {
-//     //     readOut(data.queryresult.pods[1].subpods[0].plaintext)
-//     //   }
-//     //   else 
-//     //   readOut(data.queryresult.pods[0].subpods[0].plaintext);
-//     //   readOut(data.queryresult.pods[1].subpods[0].plaintext)
-//     //   recognition.stop()
-//     //   setTimeout(() => {
-//     //     recognition.start();
-//     //   }, 2000);
-
-//     // });
-// };
-// const getBestAnswer = (transcript) => {
-//     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&includepodid=Result&output=json`)}`)                  
-//     .then(function(response){
-//       return response.json();
-//     }).then(function(data){
-//         console.log(data.contents);
-//     //   if (data.contents.queryresult.pods[0].subpods[0].plaintext === 'false') {
-//     //     readOut(data.contents.queryresult.pods[1].subpods[0].plaintext)
-//     //   }
-//     //   else 
-//     //   readOut(data.queryresult.pods[0].subpods[0].plaintext);
-//     //   readOut(data.queryresult.pods[1].subpods[0].plaintext)
-//     //   recognition.stop()
-//     //   setTimeout(() => {
-//     //     recognition.start();
-//     //   }, 2000);
-
-//     });
-// };
 const getBestAnswer = (transcript) => {
     fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
@@ -879,33 +810,6 @@ const getJoke = (transcript) => {
     })
 }
 
-
-//this is for the image display which is a work in progress.
-// const getImage = (transcript) => {
-//     fetch(`http://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
-//     .then(function(response){
-//         return response.json();
-//     })
-//     .then(function(data){
-//         // console.log(data.queryresult.pods[0].subpods[0]);
-//         // readOut(data.queryresult.pods[0].subpods[0].img.src)
-//         // const imageURL = (data.queryresult.pods[2].subpods[0].imagesource)
-//         const imageURL = ('https://upload.wikimedia.org/wikipedia/commons/6/6a/British_Airways_A320-100_G-BUSB.jpg')
-//         console.log(data.queryresult.pods[2].subpods[0].imagesource);
-//         const reader = new FileReader();
-//             reader.onloadend = () => {
-//             const base64data = reader.result;                
-//             console.log(base64data);
-//         }
-
-//         (async () => {
-//         const response = await fetch(imageURL)
-//         const imageBlob = await response.blob()
-//         const image = reader.readAsDataURL(imageBlob);  
-        
-//         })()
-//             })
-// }
 const getAnswer1 = (transcript) => {
     fetch(`https://api.wolframalpha.com/v2/query?appid=K88UKY-9Y63KVUQ7X&input=${transcript}&output=json`)
     .then(function(response){
@@ -928,7 +832,6 @@ const getAnswer2 = (transcript) => {
 }
 
 //timer setup
-
 
 //weather setup
 
@@ -1111,8 +1014,6 @@ async function getNews(){
   
   let date = new Date();
   // category news
-
-
   let yyyy,mm,dd
   
   dd = date.getDate()
@@ -1126,11 +1027,7 @@ async function getNews(){
       `from=${yyyy}-${mm}-${dd}&` +
       "sortBy=popularity&" +
       "apiKey=952912f2a18a4170a25ff2e9d360883f";
-  
-      // https://newsapi.org/v2/everything?q=Apple&from=2021-09-19&sortBy=popularity&apiKey=API_KEY
-  
       var req = new Request(url)
-  
     await fetch(req).then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -1162,7 +1059,7 @@ stopButton.addEventListener("click", () => {
     recognition.stop()
 })
 
-//G U R U speech output
+//JARVIS speech output
 
 function readOut(message){
     const speech = new SpeechSynthesisUtterance()
@@ -1190,15 +1087,6 @@ function autoJarvis() {
 window.onload = () => {
 
     openModal(modal)
-    // setTimeout(
-    //     function open(event){
-    //         document.querySelector(".popup").style.display = "block";
-    //     },
-    //     1000
-    // ) 
-    // document.querySelector("#close").addEventListener("click", function(){
-    //     document.querySelector(".popup").style.display = "none";
-    // });
     initClock()
     jarvisComs.forEach((e) => {
         document.querySelector(".commands").innerHTML += `<p>#${e}</p><br />`;
