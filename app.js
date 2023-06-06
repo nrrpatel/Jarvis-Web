@@ -257,6 +257,11 @@ recognition.onresult = function(event){
         let a = window.open("https://www.instagram.com/?hl=en");
         windowsB.push(a)
     }
+    if(transcript.includes("open stratum ai")){
+        readOut("hello guys presenting stratum sir")
+        let a = window.open("https://www.stratum.ai/");
+        windowsB.push(a)
+    }
     if(transcript.includes("open facebook")){
         readOut("opening facebook sir")
         let a = window.open("https://www.facebook.com/");
