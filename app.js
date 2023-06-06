@@ -1048,7 +1048,7 @@ async function getNews(){
 // speech recognition stop
 recognition.onend = function(){
 
-    console.log("Shut up mf");
+    console.log("Stopped listening");
 };
 
 startButton.addEventListener("click", () => {
